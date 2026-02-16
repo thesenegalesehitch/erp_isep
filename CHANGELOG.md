@@ -13,7 +13,7 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 - Application mobile
 - Documentation complète
 
-## [1.0.0] - 2025-11-02
+## [1.0.0] - 2026-02-16
 
 ### Ajouté
 - Structure initiale du projet

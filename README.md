@@ -194,10 +194,10 @@ Ce projet est développé pour l'ISEP. Pour contribuer, voir [CONTRIBUTING.md](.
 
 ## 📝 Licence
 
-Propriétaire - ISEP © 2025
+Propriétaire - ISEP © 2026
 
 ---
 
 **Version** : 1.0.0  
-**Dernière mise à jour** : 2025-11-02
+**Dernière mise à jour** : 2026-02-16
 

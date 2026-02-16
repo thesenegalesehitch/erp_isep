@@ -281,5 +281,5 @@ Application mobile et web pour la gestion de la communication interne et le part
 ---
 
 **Version** : 1.0.0  
-**Date** : 2025-11-02
+**Date** : 2026-02-16
 
