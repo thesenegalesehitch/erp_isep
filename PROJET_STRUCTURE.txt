@@ -1,0 +1,33 @@
+📁 Structure du Projet ISEP Platform
+=====================================
+
+isep-platform/
+│
+├── 📄 README.md                    # Documentation principale
+├── 📄 SPECIFICATIONS.md             # Spécifications techniques détaillées
+├── 📄 ARCHITECTURE.md               # Architecture du système
+├── 📄 CONTRIBUTING.md               # Guide de contribution
+├── 📄 CHANGELOG.md                  # Historique des versions
+├── 📄 .gitignore                    # Fichiers ignorés par Git
+│
+├── 📁 backend/                      # API Spring Boot
+│   └── (à développer)
+│
+├── 📁 frontend-web/                 # Application React/Vue
+│   └── (à développer)
+│
+├── 📁 mobile/                       # Application Mobile
+│   └── (à développer)
+│
+├── 📁 docs/                         # Documentation
+│   ├── architecture/
+│   ├── api/
+│   ├── user-guide/
+│   └── developer-guide/
+│
+└── 📁 docker/                       # Configuration Docker
+    └── (à développer)
+
+État actuel : Structure initiale créée ✅
+Prochaine étape : Développement des composants
+

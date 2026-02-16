@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: isep-postgres
+    environment:
+      POSTGRES_DB: isep_platform
+      POSTGRES_USER: isep_user
+      POSTGRES_PASSWORD: isep_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - isep-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U isep_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: isep-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - isep-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: isep-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/isep_platform
+      SPRING_DATASOURCE_USERNAME: isep_user
+      SPRING_DATASOURCE_PASSWORD: isep_password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-key-in-production}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - isep-network
+    volumes:
+      - ./uploads:/app/uploads
+
+  # Frontend Web
+  frontend:
+    build:
+      context: ../frontend-web
+      dockerfile: Dockerfile
+    container_name: isep-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:8080/api
+    depends_on:
+      - backend
+    networks:
+      - isep-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  isep-network:
+    driver: bridge
+

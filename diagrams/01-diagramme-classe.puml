@@ -1,0 +1,177 @@
+@startuml Diagramme de Classe - ISEP Platform
+
+!define PRIMARY_COLOR #1976d2
+!define SECONDARY_COLOR #dc004e
+!define TERTIARY_COLOR #f5f5f5
+
+skinparam class {
+    BackgroundColor<<Entity>> #E8E8E8
+    BackgroundColor<<Controller>> #D4E4F7
+    BorderColor PRIMARY_COLOR
+    ArrowColor PRIMARY_COLOR
+}
+
+package "Models" {
+    class User <<Entity>> {
+        -id: Long
+        -email: String
+        -password: String
+        -studentNumber: String
+        -firstName: String
+        -lastName: String
+        -phone: String
+        -role: Role
+        -specialty: String
+        -profilePhoto: String
+        -location: String
+        -isActive: Boolean
+        -emailVerified: Boolean
+        +getFullName(): String
+    }
+
+    class Service <<Entity>> {
+        -id: Long
+        -title: String
+        -description: String
+        -category: ServiceCategory
+        -price: BigDecimal
+        -location: String
+        -isAvailable: Boolean
+        -averageRating: Double
+        -totalRatings: Integer
+    }
+
+    class ServiceRequest <<Entity>> {
+        -id: Long
+        -message: String
+        -requestedDate: LocalDateTime
+        -status: RequestStatus
+    }
+
+    class ServiceRating <<Entity>> {
+        -id: Long
+        -rating: Integer
+        -comment: String
+    }
+
+    class Message <<Entity>> {
+        -id: Long
+        -content: String
+        -type: MessageType
+        -fileUrl: String
+        -isRead: Boolean
+        -readAt: LocalDateTime
+    }
+
+    class Conversation <<Entity>> {
+        -id: Long
+        -name: String
+        -type: ConversationType
+        -lastMessageAt: LocalDateTime
+    }
+
+    class Bus <<Entity>> {
+        -id: Long
+        -lineNumber: String
+        -driverName: String
+        -totalSeats: Integer
+        -currentLocationLat: Double
+        -currentLocationLng: Double
+        -status: BusStatus
+        -departureTime: LocalTime
+        -arrivalTime: LocalTime
+        +getAvailableSeats(): Integer
+    }
+
+    class BusReservation <<Entity>> {
+        -id: Long
+        -reservationDate: LocalDate
+        -departureTime: LocalTime
+        -pickupLocation: String
+        -status: ReservationStatus
+    }
+
+    class Activity <<Entity>> {
+        -id: Long
+        -title: String
+        -description: String
+        -type: ActivityType
+        -startDate: LocalDateTime
+        -endDate: LocalDateTime
+        -location: String
+        -maxParticipants: Integer
+        -currentParticipants: Integer
+        -isActive: Boolean
+        +hasAvailableSpots(): Boolean
+    }
+
+    class ActivityRegistration <<Entity>> {
+        -id: Long
+        -status: RegistrationStatus
+    }
+
+    class Announcement <<Entity>> {
+        -id: Long
+        -title: String
+        -content: String
+        -type: AnnouncementType
+        -priority: Priority
+        -expiresAt: LocalDateTime
+        -isPublished: Boolean
+        -publishedAt: LocalDateTime
+    }
+}
+
+' Relations User
+User ||--o{ Service : "propose"
+User ||--o{ ServiceRequest : "demande"
+User ||--o{ Message : "envoie"
+User ||--o{ Message : "reçoit"
+User ||--o{ BusReservation : "réserve"
+User ||--o{ ActivityRegistration : "s'inscrit"
+User }o--o{ Conversation : "participe"
+
+' Relations Service
+Service ||--o{ ServiceRequest : "reçoit"
+Service ||--o{ ServiceRating : "est noté"
+
+' Relations Message
+Message }o--|| Conversation : "appartient à"
+
+' Relations Bus
+Bus ||--o{ BusReservation : "reçoit"
+
+' Relations Activity
+Activity ||--o{ ActivityRegistration : "reçoit"
+
+note right of User
+  **Rôles:**
+  - STUDENT
+  - TEACHER
+  - ADMIN
+end note
+
+note right of Service
+  **Catégories:**
+  - MECHANICS
+  - ELECTRICAL
+  - PLUMBING
+  - IT
+  - TUTORING
+  - DESIGN
+  - OTHER
+end note
+
+note right of Activity
+  **Types:**
+  - COURSE
+  - EXAM
+  - WORKSHOP
+  - CONFERENCE
+  - SPORT
+  - TRIP
+  - OTHER
+end note
+
+@enduml
+

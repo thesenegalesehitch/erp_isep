@@ -1,0 +1,82 @@
+@startuml Diagramme de Séquence - Connexion ISEP
+
+skinparam sequence {
+    ArrowColor #1976d2
+    LifeLineBorderColor #1976d2
+}
+
+actor "Utilisateur" as User
+participant "Navigateur" as Browser
+participant "AuthController" as Controller
+participant "AuthenticationManager" as AuthManager
+participant "UserDetailsService" as UserService
+participant "UserRepository" as Repository
+participant "PasswordEncoder" as Encoder
+participant "JwtTokenProvider" as JWT
+database "Base de\nDonnées" as DB
+
+== Affichage formulaire ==
+User -> Browser: Accède à /login
+Browser -> Controller: GET /login
+Controller -> Browser: Retourne formulaire
+Browser -> User: Affiche formulaire connexion
+
+== Soumission ==
+User -> Browser: Remplit email + password
+Browser -> Controller: POST /api/auth/login
+
+== Authentification ==
+Controller -> AuthManager: authenticate(email, password)
+AuthManager -> UserService: loadUserByUsername(email)
+UserService -> Repository: findByEmail(email)
+Repository -> DB: SELECT * FROM users
+DB --> Repository: User trouvé
+Repository --> UserService: UserDetails
+
+UserService -> AuthManager: UserDetails
+AuthManager -> Encoder: matches(password, hash)
+Encoder --> AuthManager: true/false
+
+alt Mot de passe correct
+    AuthManager --> Controller: Authentication réussie
+else Mot de passe incorrect
+    AuthManager --> Browser: 401 Unauthorized
+    Browser --> User: Affiche "Identifiants incorrects"
+    stop
+end
+
+== Génération tokens ==
+Controller -> JWT: generateToken(userDetails)
+JWT --> Controller: accessToken
+
+Controller -> JWT: generateRefreshToken(userDetails)
+JWT --> Controller: refreshToken
+
+Controller -> Repository: findByEmail(email)
+Repository -> DB: SELECT
+DB --> Repository: User
+Repository --> Controller: User complet
+
+== Réponse ==
+Controller -> Browser: AuthResponse(token, refreshToken, user)
+Browser -> Browser: Stocke tokens (localStorage)
+Browser -> User: Redirige vers dashboard\nUtilisateur connecté
+
+note over User,DB #4CAF50
+  **Résultat:**
+  - Utilisateur authentifié
+  - Tokens JWT stockés
+  - Session créée
+  - Accès aux fonctionnalités
+end note
+
+note over AuthManager,Encoder #FF9800
+  **Sécurité:**
+  - Vérification mot de passe hashé
+  - Vérification compte actif
+  - Rate limiting (5 tentatives)
+  - Tokens avec expiration
+end note
+
+@enduml
+

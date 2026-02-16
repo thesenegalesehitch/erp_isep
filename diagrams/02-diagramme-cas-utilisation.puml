@@ -1,0 +1,130 @@
+@startuml Diagramme de Cas d'Utilisation - ISEP Platform
+
+!define PRIMARY_COLOR #1976d2
+!define SECONDARY_COLOR #dc004e
+
+skinparam actor {
+    BackgroundColor #FFF
+    BorderColor PRIMARY_COLOR
+}
+
+skinparam usecase {
+    BackgroundColor<<Student>> #E8F5E9
+    BackgroundColor<<Teacher>> #FFF3E0
+    BackgroundColor<<Admin>> #F3E5F5
+    BackgroundColor<<Public>> #F5F5F5
+    BorderColor PRIMARY_COLOR
+}
+
+left to right direction
+
+actor "Étudiant" as Student
+actor "Enseignant" as Teacher
+actor "Administration" as Admin
+actor "Visiteur" as Visitor
+
+package "Authentification" {
+    usecase "S'inscrire" as UC1 <<Public>>
+    usecase "Se connecter" as UC2 <<Public>>
+    usecase "Se déconnecter" as UC3 <<Public>>
+    usecase "Réinitialiser mot de passe" as UC4 <<Public>>
+}
+
+package "Services Étudiants" {
+    usecase "Publier un service" as UC5 <<Student>>
+    usecase "Modifier un service" as UC6 <<Student>>
+    usecase "Supprimer un service" as UC7 <<Student>>
+    usecase "Rechercher services" as UC8 <<Public>>
+    usecase "Réserver un service" as UC9 <<Student>>
+    usecase "Noter un service" as UC10 <<Student>>
+    usecase "Gérer mes services" as UC11 <<Student>>
+}
+
+package "Messagerie" {
+    usecase "Envoyer message" as UC12 <<Student>> <<Teacher>>
+    usecase "Chat individuel" as UC13 <<Student>> <<Teacher>>
+    usecase "Chat de groupe" as UC14 <<Student>> <<Teacher>>
+    usecase "Forums par spécialité" as UC15 <<Student>> <<Teacher>>
+    usecase "Recevoir notifications" as UC16 <<Student>> <<Teacher>>
+}
+
+package "Bus de Ramassage" {
+    usecase "Voir bus en temps réel" as UC17 <<Student>>
+    usecase "Réserver un trajet" as UC18 <<Student>>
+    usecase "Suivre position bus" as UC19 <<Student>>
+    usecase "Signaler retard" as UC20 <<Student>>
+    usecase "Gérer bus" as UC21 <<Admin>>
+}
+
+package "Calendrier et Activités" {
+    usecase "Voir calendrier" as UC22 <<Student>> <<Teacher>>
+    usecase "S'inscrire à activité" as UC23 <<Student>>
+    usecase "Créer activité" as UC24 <<Teacher>> <<Admin>>
+    usecase "Gérer inscriptions" as UC25 <<Teacher>> <<Admin>>
+    usecase "Notifications événements" as UC26 <<Student>> <<Teacher>>
+}
+
+package "Actualités" {
+    usecase "Consulter annonces" as UC27 <<Public>>
+    usecase "Publier annonce" as UC28 <<Teacher>> <<Admin>>
+    usecase "Gérer annonces" as UC29 <<Admin>>
+    usecase "Télécharger documents" as UC30 <<Student>> <<Teacher>>
+}
+
+' Relations Étudiant
+Student --> UC3
+Student --> UC5
+Student --> UC6
+Student --> UC7
+Student --> UC8
+Student --> UC9
+Student --> UC10
+Student --> UC11
+Student --> UC12
+Student --> UC13
+Student --> UC14
+Student --> UC15
+Student --> UC16
+Student --> UC17
+Student --> UC18
+Student --> UC19
+Student --> UC20
+Student --> UC22
+Student --> UC23
+Student --> UC26
+Student --> UC27
+Student --> UC30
+
+' Relations Enseignant
+Teacher --> UC3
+Teacher --> UC8
+Teacher --> UC12
+Teacher --> UC13
+Teacher --> UC14
+Teacher --> UC15
+Teacher --> UC16
+Teacher --> UC22
+Teacher --> UC24
+Teacher --> UC25
+Teacher --> UC26
+Teacher --> UC27
+Teacher --> UC28
+Teacher --> UC30
+
+' Relations Admin
+Admin --> UC3
+Admin --> UC21
+Admin --> UC24
+Admin --> UC25
+Admin --> UC28
+Admin --> UC29
+
+' Relations Visiteur
+Visitor --> UC1
+Visitor --> UC2
+Visitor --> UC4
+Visitor --> UC8
+Visitor --> UC27
+
+@enduml
+

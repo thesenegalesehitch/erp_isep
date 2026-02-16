@@ -1,0 +1,90 @@
+@startuml Diagramme de Séquence - Inscription ISEP
+
+skinparam sequence {
+    ArrowColor #1976d2
+    LifeLineBorderColor #1976d2
+}
+
+actor "Utilisateur" as User
+participant "Navigateur" as Browser
+participant "AuthController" as Controller
+participant "Validation" as Validation
+participant "UserRepository" as Repository
+participant "PasswordEncoder" as Encoder
+participant "JwtTokenProvider" as JWT
+participant "Base de Données" as DB
+
+== Affichage formulaire ==
+User -> Browser: Accède à /register
+Browser -> Controller: GET /register
+Controller -> Browser: Retourne formulaire
+Browser -> User: Affiche formulaire
+
+== Soumission ==
+User -> Browser: Remplit et soumet
+note right of User
+  Champs:
+  - email
+  - password
+  - firstName
+  - lastName
+  - studentNumber (optionnel)
+  - role (optionnel)
+end note
+
+Browser -> Controller: POST /api/auth/register
+
+== Validation ==
+Controller -> Validation: validate(request)
+Validation -> Validation: Vérifie règles
+note right of Validation
+  - email: @Email, unique
+  - password: min 8 caractères
+  - firstName, lastName: requis
+end note
+
+alt Validation réussie
+    Validation --> Controller: OK
+else Validation échoue
+    Validation --> Browser: Erreurs
+    Browser --> User: Affiche erreurs
+    stop
+end
+
+== Vérification email ==
+Controller -> Repository: existsByEmail(email)
+Repository -> DB: SELECT COUNT
+DB --> Repository: count
+Repository --> Controller: false (email disponible)
+
+== Création utilisateur ==
+Controller -> Encoder: encode(password)
+Encoder --> Controller: Password hashé
+
+Controller -> Repository: save(user)
+Repository -> DB: INSERT INTO users
+DB --> Repository: User créé
+Repository --> Controller: User instance
+
+== Génération JWT ==
+Controller -> JWT: generateToken(userDetails)
+JWT --> Controller: accessToken
+
+Controller -> JWT: generateRefreshToken(userDetails)
+JWT --> Controller: refreshToken
+
+== Réponse ==
+Controller -> Browser: AuthResponse(token, refreshToken, user)
+Browser -> User: Redirige vers login\nAffiche message succès
+
+note over User,DB #4CAF50
+  **Résultat:**
+  - Compte créé
+  - Email vérifié (optionnel)
+  - Rôle STUDENT par défaut
+  - Tokens JWT générés
+  - Prêt pour connexion
+end note
+
+@enduml
+
