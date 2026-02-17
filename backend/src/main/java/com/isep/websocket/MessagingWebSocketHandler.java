@@ -1,5 +1,6 @@
 package com.isep.websocket;
 
+import com.isep.dto.MessageDTO;
 import com.isep.model.Message;
 import com.isep.service.MessagingService;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +17,33 @@ public class MessagingWebSocketHandler {
     private final SimpMessagingTemplate messagingTemplate;
     
     @MessageMapping("/chat.send")
-    public void sendMessage(@Payload Message message) {
+    public void sendMessage(@Payload MessageDTO messageDto) {
         // Process message and save
-        Message savedMessage = messagingService.sendGroupMessage(
-            message.getSender().getId(),
-            message.getConversation().getId(),
-            message.getContent(),
-            message.getType()
-        );
+        Message savedMessage;
+        
+        if (messageDto.getConversationId() != null) {
+            savedMessage = messagingService.sendGroupMessage(
+                messageDto.getSenderId(),
+                messageDto.getConversationId(),
+                messageDto.getContent(),
+                messageDto.getType()
+            );
+        } else if (messageDto.getReceiverId() != null) {
+             savedMessage = messagingService.sendMessage(
+                messageDto.getSenderId(),
+                messageDto.getReceiverId(),
+                messageDto.getContent(),
+                messageDto.getType()
+            );
+        } else {
+             // Handle error or ignore
+             return;
+        }
         
         // Broadcast to conversation participants
         messagingTemplate.convertAndSend(
             "/topic/conversation/" + savedMessage.getConversation().getId(),
-            savedMessage
+            MessageDTO.fromEntity(savedMessage)
         );
     }
     

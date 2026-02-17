@@ -6,13 +6,25 @@ class ForumProvider with ChangeNotifier {
   final ApiService _apiService = ApiService();
   
   List<Forum> _forums = [];
+  List<String> _specialties = [];
   List<ForumPost> _posts = [];
   bool _isLoading = false;
   
   List<Forum> get forums => _forums;
+  List<String> get specialties => _specialties;
   List<ForumPost> get posts => _posts;
   bool get isLoading => _isLoading;
   
+  Future<void> loadSpecialties() async {
+    try {
+      final response = await _apiService.get('/forums/specialties');
+      _specialties = List<String>.from(response);
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error loading specialties: $e');
+    }
+  }
+
   Future<void> loadForums({String? specialty}) async {
     _isLoading = true;
     notifyListeners();

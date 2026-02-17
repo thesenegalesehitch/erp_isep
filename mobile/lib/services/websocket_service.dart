@@ -1,61 +1,98 @@
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'dart:async';
+import 'dart:convert';
+import 'package:stomp_dart_client/stomp.dart';
+import 'package:stomp_dart_client/stomp_config.dart';
+import 'package:stomp_dart_client/stomp_frame.dart';
 import '../services/api_service.dart';
 
 class WebSocketService {
-  IO.Socket? _socket;
+  StompClient? _client;
   final ApiService _apiService = ApiService();
+  final Map<String, Function(dynamic)> _listeners = {};
 
   void connect() async {
     final token = await _apiService.getToken();
     
-    _socket = IO.io('http://localhost:8080', <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': false,
-      'auth': {'token': token},
-    });
+    _client = StompClient(
+      config: StompConfig(
+        url: 'ws://localhost:8080/ws',
+        onConnect: onConnect,
+        beforeConnect: () async {
+          print('waiting to connect...');
+          await Future.delayed(const Duration(milliseconds: 200));
+          print('connecting...');
+        },
+        onWebSocketError: (dynamic error) => print(error.toString()),
+        stompConnectHeaders: {'Authorization': 'Bearer $token'},
+        webSocketConnectHeaders: {'Authorization': 'Bearer $token'},
+      ),
+    );
 
-    _socket!.connect();
+    _client!.activate();
+  }
 
-    _socket!.on('connect', (_) {
-      print('WebSocket connected');
-    });
+  void onConnect(StompFrame frame) {
+    print('WebSocket connected');
+    
+    // Subscribe to public topics
+    _client!.subscribe(
+      destination: '/topic/public',
+      callback: (frame) {
+        if (frame.body != null) {
+          emit('message', json.decode(frame.body!));
+        }
+      },
+    );
 
-    _socket!.on('disconnect', (_) {
-      print('WebSocket disconnected');
-    });
+    _client!.subscribe(
+      destination: '/topic/bus-updates',
+      callback: (frame) {
+        if (frame.body != null) {
+          emit('busUpdate', json.decode(frame.body!));
+        }
+      },
+    );
   }
 
   void disconnect() {
-    _socket?.disconnect();
-    _socket = null;
+    _client?.deactivate();
+    _client = null;
   }
 
   void on(String event, Function(dynamic) callback) {
-    _socket?.on(event, callback);
+    _listeners[event] = callback;
   }
 
   void off(String event) {
-    _socket?.off(event);
+    _listeners.remove(event);
   }
 
   void emit(String event, dynamic data) {
-    _socket?.emit(event, data);
+    if (_listeners.containsKey(event)) {
+      _listeners[event]!(data);
+    }
   }
 
   void sendMessage(String conversationId, String content, {String type = 'TEXT'}) {
-    emit('sendMessage', {
-      'conversationId': conversationId,
-      'content': content,
-      'type': type,
-    });
+    _client?.send(
+      destination: '/app/chat.sendMessage',
+      body: json.encode({
+        'conversationId': conversationId,
+        'content': content,
+        'type': type,
+      }),
+    );
   }
 
   void joinConversation(String conversationId) {
-    emit('joinConversation', conversationId);
+    _client?.send(
+      destination: '/app/chat.addUser',
+      body: json.encode({'conversationId': conversationId}),
+    );
   }
 
   void leaveConversation(String conversationId) {
-    emit('leaveConversation', conversationId);
+    // Implement if backend supports
   }
 }
 

@@ -2,6 +2,7 @@ package com.isep.service;
 
 import com.isep.model.Bus;
 import com.isep.repository.BusRepository;
+import com.isep.websocket.BusTrackingWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Random;
 public class BusTrackingService {
     
     private final BusRepository busRepository;
+    private final BusTrackingWebSocketHandler busTrackingWebSocketHandler;
     private final Random random = new Random();
     
     // Simuler la mise à jour de position toutes les 10 secondes
@@ -22,6 +24,7 @@ public class BusTrackingService {
     @Transactional
     public void updateBusPositions() {
         List<Bus> buses = busRepository.findAll();
+        boolean anyUpdate = false;
         
         for (Bus bus : buses) {
             if (bus.getStatus() == Bus.BusStatus.IN_TRANSIT) {
@@ -32,7 +35,14 @@ public class BusTrackingService {
                 bus.setCurrentLocationLat(lat);
                 bus.setCurrentLocationLng(lng);
                 busRepository.save(bus);
+                
+                busTrackingWebSocketHandler.broadcastBusUpdate(bus);
+                anyUpdate = true;
             }
+        }
+        
+        if (anyUpdate) {
+            busTrackingWebSocketHandler.broadcastAllBuses(buses);
         }
     }
     
@@ -43,6 +53,9 @@ public class BusTrackingService {
         
         bus.setStatus(status);
         busRepository.save(bus);
+        
+        busTrackingWebSocketHandler.broadcastBusUpdate(bus);
+        busTrackingWebSocketHandler.broadcastAllBuses(busRepository.findAll());
     }
     
     @Transactional
@@ -53,6 +66,9 @@ public class BusTrackingService {
         bus.setCurrentLocationLat(lat);
         bus.setCurrentLocationLng(lng);
         busRepository.save(bus);
+        
+        busTrackingWebSocketHandler.broadcastBusUpdate(bus);
+        busTrackingWebSocketHandler.broadcastAllBuses(busRepository.findAll());
     }
     
     public List<Bus> getAllActiveBuses() {

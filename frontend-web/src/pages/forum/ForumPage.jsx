@@ -17,6 +17,7 @@ import {
   Box,
   CircularProgress,
   Alert,
+  MenuItem,
 } from '@mui/material';
 import {
   Add as AddIcon,
@@ -26,23 +27,28 @@ import {
   MoreVert as MoreVertIcon,
 } from '@mui/icons-material';
 import api from '../../services/api';
+import ForumCard from '../../components/forum/ForumCard';
 
 const ForumPage = () => {
   const [forums, setForums] = useState([]);
+  const [specialties, setSpecialties] = useState([]);
+  const [selectedSpecialty, setSelectedSpecialty] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
-  const [newForum, setNewForum] = useState({ title: '', description: '' });
+  const [newForum, setNewForum] = useState({ title: '', description: '', specialty: '' });
   const [selectedForum, setSelectedForum] = useState(null);
 
   useEffect(() => {
     fetchForums();
-  }, []);
+    fetchSpecialties();
+  }, [selectedSpecialty]);
 
   const fetchForums = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/forums');
+      const url = selectedSpecialty ? `/forums?specialty=${selectedSpecialty}` : '/forums';
+      const response = await api.get(url);
       setForums(response.data);
       setError(null);
     } catch (err) {
@@ -53,12 +59,21 @@ const ForumPage = () => {
     }
   };
 
+  const fetchSpecialties = async () => {
+    try {
+      const response = await api.get('/forums/specialties');
+      setSpecialties(response.data);
+    } catch (err) {
+      console.error('Error fetching specialties:', err);
+    }
+  };
+
   const handleCreateForum = async () => {
     try {
       const response = await api.post('/forums', newForum);
       setForums([...forums, response.data]);
       setCreateDialogOpen(false);
-      setNewForum({ title: '', description: '' });
+      setNewForum({ title: '', description: '', specialty: '' });
     } catch (err) {
       setError('Failed to create forum');
       console.error('Error creating forum:', err);
@@ -68,54 +83,6 @@ const ForumPage = () => {
   const handleSelectForum = (forum) => {
     setSelectedForum(forum);
   };
-
-  const ForumCard = ({ forum }) => (
-    <Card
-      sx={{
-        cursor: 'pointer',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: 4,
-        },
-      }}
-      onClick={() => handleSelectForum(forum)}
-    >
-      <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-          <Avatar sx={{ bgcolor: 'primary.main' }}>
-            <ForumIcon />
-          </Avatar>
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="h6" component="div">
-              {forum.name || forum.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-              {forum.description}
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
-              <Chip
-                icon={<CommentIcon />}
-                label={`${forum.postCount || forum.posts?.length || 0} posts`}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-              <Chip
-                label={forum.category || 'General'}
-                size="small"
-                color="secondary"
-                variant="outlined"
-              />
-            </Box>
-          </Box>
-          <IconButton size="small">
-            <MoreVertIcon />
-          </IconButton>
-        </Box>
-      </CardContent>
-    </Card>
-  );
 
   const ForumDetail = ({ forum }) => (
     <Box>
@@ -239,6 +206,24 @@ const ForumPage = () => {
         </Button>
       </Box>
 
+      <Box sx={{ mb: 4, display: 'flex', gap: 2 }}>
+        <TextField
+          select
+          label="Filtrer par spécialité"
+          value={selectedSpecialty}
+          onChange={(e) => setSelectedSpecialty(e.target.value)}
+          sx={{ minWidth: 200 }}
+          size="small"
+        >
+          <MenuItem value="">Toutes les spécialités</MenuItem>
+          {specialties.map((specialty) => (
+            <MenuItem key={specialty} value={specialty}>
+              {specialty}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Box>
+
       {error && (
         <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError(null)}>
           {error}
@@ -250,8 +235,8 @@ const ForumPage = () => {
       ) : (
         <Grid container spacing={3}>
           {forums.map((forum) => (
-            <Grid item xs={12} md={6} key={forum.id}>
-              <ForumCard forum={forum} />
+            <Grid item xs={12} md={6} lg={4} key={forum.id}>
+              <ForumCard forum={forum} onClick={handleSelectForum} />
             </Grid>
           ))}
           {forums.length === 0 && (

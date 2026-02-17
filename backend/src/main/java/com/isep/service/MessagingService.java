@@ -81,13 +81,10 @@ public class MessagingService {
     @Transactional
     public Conversation findOrCreateConversation(User user1, User user2) {
         // Try to find existing private conversation
-        List<Conversation> conversations = conversationRepository.findAll();
+        List<Conversation> conversations = conversationRepository.findPrivateConversationsBetweenUsers(user1, user2);
         
         for (Conversation conv : conversations) {
-            if (conv.getType() == Conversation.ConversationType.PRIVATE &&
-                conv.getParticipants().contains(user1) &&
-                conv.getParticipants().contains(user2) &&
-                conv.getParticipants().size() == 2) {
+            if (conv.getParticipants().size() == 2) {
                 return conv;
             }
         }
@@ -96,7 +93,7 @@ public class MessagingService {
         Conversation conversation = new Conversation();
         conversation.setName(user1.getFirstName() + " - " + user2.getFirstName());
         conversation.setType(Conversation.ConversationType.PRIVATE);
-        conversation.setParticipants(Set.of(user1, user2));
+        conversation.setParticipants(new java.util.HashSet<>(java.util.Set.of(user1, user2)));
         
         return conversationRepository.save(conversation);
     }
@@ -109,9 +106,7 @@ public class MessagingService {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("User not found"));
         
-        return conversationRepository.findAll().stream()
-            .filter(conv -> conv.getParticipants().contains(user))
-            .toList();
+        return conversationRepository.findByParticipantsContaining(user);
     }
     
     @Transactional

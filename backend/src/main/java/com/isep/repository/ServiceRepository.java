@@ -20,5 +20,8 @@ public interface ServiceRepository extends JpaRepository<Service, Long> {
            "(:location IS NULL OR s.location LIKE %:location%)")
     List<Service> searchServices(@Param("category") Service.ServiceCategory category, 
                                  @Param("location") String location);
+                                 
+    @Query("SELECT s FROM Service s WHERE s.isAvailable = true AND (LOWER(s.title) LIKE LOWER(CONCAT('%', :query, '%')) OR LOWER(s.description) LIKE LOWER(CONCAT('%', :query, '%')))")
+    List<Service> searchByQuery(@Param("query") String query);
 }
 

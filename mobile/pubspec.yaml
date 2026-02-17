@@ -18,7 +18,6 @@ dependencies:
   dio: ^5.4.0
   
   # WebSocket
-  socket_io_client: ^2.0.3
   
   # Local Storage
   shared_preferences: ^2.2.2
@@ -44,6 +43,7 @@ dependencies:
   # Image
   image_picker: ^1.0.7
   cached_network_image: ^3.3.0
+  stomp_dart_client: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -31,6 +31,11 @@ public class ForumController {
             : forumRepository.findByIsActiveTrue();
         return ResponseEntity.ok(forums);
     }
+
+    @GetMapping("/specialties")
+    public ResponseEntity<List<String>> getSpecialties() {
+        return ResponseEntity.ok(forumRepository.findDistinctSpecialties());
+    }
     
     @GetMapping("/{id}/posts")
     public ResponseEntity<List<ForumPost>> getForumPosts(@PathVariable Long id) {
