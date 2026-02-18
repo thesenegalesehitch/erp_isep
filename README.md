@@ -4,24 +4,25 @@
 
 ISEP ERP est une solution ERP modulable révolutionnaire conçue pour les établissements d'enseignement supérieur en Afrique de l'Ouest. Notre plateforme s'adapte à tous les types d'établissements : universités publiques, universités privées, instituts professionnels, écoles techniques et écoles de commerce.
 
-## 🎯 Modèle Économique (Pivot ERP)
+## 🎯 Modèle Économique (Open Source Gratuit)
 
-### Licences Établissements (B2B)
-- **PETIT** (<500 étudiants) : 2M FCFA/an
-- **MOYEN** (500-2000 étudiants) : 5M FCFA/an  
-- **GRAND** (>2000 étudiants) : 10M FCFA/an
-- **PERSONNALISÉ** : Sur devis
+### Licence et Accès
+- **100% GRATUIT** : Tous les établissements peuvent utiliser l'ERP gratuitement
+- **Open Source** : Code source disponible sur GitHub
+- **Sans restriction** : Pas de limites d'étudiants ou de fonctionnalités
+- **Communauté** : Contribution et amélioration collaborative
 
-### Modules Optionnels
-- **Gestion des Cités U** : 500k FCFA/module/an
-- **Restauration Universitaire** : 500k FCFA/module/an
-- **Laboratoires de Recherche** : 500k FCFA/module/an
-- **Partenariats Entreprises** : 500k FCFA/module/an
+### Services Complémentaires (Optionnel)
+- **Support technique** : Formation et assistance personnalisée
+- **Hébergement cloud** : Solution managée pour les établissements
+- **Développement sur mesure** : Modules spécifiques sur demande
+- **Formation utilisateur** : Sessions de formation pour le personnel
 
-### Services Additionnels
-- **Maintenance** : 20% de licence/an
-- **Formation** : 1M FCFA/session
-- **Hébergement Cloud** : 200k FCFA/mois
+### Avantages du Modèle Gratuit
+- **Adoption maximale** : Aucune barrière financière
+- **Impact social** : Accessible à tous les établissements
+- **Communauté active** : Développement collaboratif
+- **Innovation ouverte** : Contributions de tous
 
 ## 🚀 Fonctionnalités Principales
 
@@ -184,28 +185,28 @@ npm run dev
 docker-compose up -d
 ```
 
-## 💡 Modèle d'Affaires ERP
+## 💡 Modèle d'Affaires Open Source
 
-### Revenus Récurrents (MRR/ARR)
-- **Licences établissements** : 2-10M FCFA/an par établissement
-- **Modules optionnels** : 500k FCFA/module/an
-- **Services additionnels** : Maintenance, formation, hébergement
-- **Target initial** : 20 établissements pilotes en 12 mois
-- **Potentiel** : 200M FCFA/an récurrents
-- **Expansion** : 100+ établissements en 24 mois
+### Impact et Accessibilité
+- **Adoption illimitée** : Tous les établissements peuvent déployer gratuitement
+- **Aucune restriction** : Nombre illimité d'étudiants et de fonctionnalités
+- **Déploiement autonome** : Les établissements hébergent leur propre instance
+- **Support communautaire** : Documentation complète et forums d'entraide
 
 ### Avantages Concurrentiels
+- **Gratuité totale** : Alternative aux solutions commerciales coûteuses
 - **Modulaire** : Configuration par type d'établissement
 - **Localisé** : Adapté au contexte sénégalais et ouest-africain
 - **Scalable** : De l'institut professionnel à l'université complète
 - **Intégré** : Tous les modules sur une seule plateforme
-- **Support local** : Formation et maintenance locale
+- **Customisable** : Code source ouvert pour adaptations locales
 
-### Stratégie de Go-to-Market
-- **Phase 1** : ISEP comme premier client pilote (gratuit)
-- **Phase 2** : 20 établissements partenaires (50% réduction)
-- **Phase 3** : Expansion nationale (tarifs complets)
-- **Phase 4** : Expansion UEMOA (francophonie)
+### Stratégie de Déploiement
+- **Phase 1** : ISEP comme premier client pilote
+- **Phase 2** : 20 établissements partenaires (formation gratuite)
+- **Phase 3** : Publication open source sur GitHub
+- **Phase 4** : Adoption nationale et régionale
+- **Phase 5** : Communauté de contributeurs mondiaux
 
 ## 📚 Documentation
 
@@ -235,37 +236,49 @@ docker-compose up -d
 - [ ] Documentation complète
 - [ ] Déploiement production
 
-## 🎯 Pivot ERP Réussi
+## 🎯 Pivot Open Source Réussi
 
 **Avant le pivot** : SaaS B2B2C parent-connect sans marché  
-**Après le pivot** : ERP B2B pour établissements d'enseignement
+**Après le pivot** : ERP Open Source gratuit pour tous les établissements
 
 **Changements majeurs** :
 - ❌ Suppression complète du modèle parent-connect
-- ❌ Retrait focus communication parent-école
-- ✅ Ajout modèles ERP multi-établissements
-- ✅ Système de licences par taille d'établissement
+- ❌ Retrait focus commercial et licences payantes
+- ✅ ERP 100% gratuit et open source
+- ✅ Tous les modules inclus sans restriction
 - ✅ Interface d'administration complète
-- ✅ Modules optionnels (cités, resto, recherche, entreprises)
-- ✅ Focus marché éducation Sénégal/UEMOA
+- ✅ Déploiement autonome par établissement
+- ✅ Documentation complète et support communautaire
 
-**Nouveau potentiel** : 500M FCFA ARR en 24 mois
+**Nouveau potentiel** : Adoption illimitée et impact social maximal
 
 ---
 
-**Version** : 4.0.0 - Pivot ERP Éducation  
+**Version** : 5.0.0 - ERP Open Source Gratuit  
 **Dernière mise à jour** : 2026-02-18
 
-## 📞 Contact
+## 📞 Contact & Communauté
 
+- **GitHub** : https://github.com/isep-erp/isep-erp-platform
 - **Email** : contact@isep-erp.sn
 - **Téléphone** : +221 33 825 79 25
 - **Site Web** : https://isep-erp.sn
 - **Adresse** : Avenue Cheikh Anta Diop, Dakar, Sénégal
 
+## 🤝 Contribuer
+
+Nous welcome toutes les contributions ! Consultez le guide [CONTRIBUTING.md](./CONTRIBUTING.md) pour savoir comment :
+- Reporter des bugs
+- Proposer des améliorations
+- Soumettre du code
+- Traduire l'interface
+- Partager la documentation
+
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence **MIT** - Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+**Vous pouvez utiliser, modifier et distribuer ce ERP gratuitement pour tous vos établissements !**
 
 ## 🙏 Remerciements
 

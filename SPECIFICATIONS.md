@@ -2,7 +2,23 @@
 
 ## 🎯 Vue d'Ensemble
 
-ERP modulable pour la gestion complète des établissements d'enseignement supérieur en Afrique de l'Ouest. Solution adaptable aux universités publiques, privées, instituts professionnels et écoles techniques.
+ERP open source gratuit pour la gestion complète des établissements d'enseignement supérieur en Afrique de l'Ouest. Solution 100% libre, adaptable aux universités publiques, privées, instituts professionnels et écoles techniques.
+
+## 🌟 Philosophie Open Source
+
+### Principes Fondateurs
+- **Accès universel** : Gratuit pour tous les établissements, sans restriction
+- **Code source ouvert** : Transparence totale et possibilité de customisation
+- **Communauté collaborative** : Développement partagé et amélioration continue
+- **Souveraineté numérique** : Les établissements contrôlent leurs données
+- **Impact social** : Démocratisation de l'outillage numérique éducatif
+
+### Avantages du Modèle Gratuit
+- **Zéro barrière financière** : Aucun coût de licence ou d'utilisation
+- **Illimité** : Nombre d'étudiants, d'utilisateurs et de fonctionnalités sans limite
+- **Autonomie** : Les établissements hébergent et maîtrisent leur instance
+- **Customisation** : Code source modifiable selon les besoins locaux
+- **Innovation** : Contribution de la communauté mondiale
 
 ## 👥 Acteurs et Rôles
 
@@ -341,7 +357,38 @@ ERP modulable pour la gestion complète des établissements d'enseignement supé
 
 ---
 
-**Version** : 4.0.0 - ERP Éducation  
+**Version** : 5.0.0 - ERP Open Source Gratuit  
 **Date** : 2026-02-18  
-**Statut** : Prêt pour production
+**Statut** : Prêt pour déploiement open source  
+**Licence** : MIT (Usage gratuit et illimité)
+
+## 🚀 Déploiement Open Source
+
+### Installation Simplifiée
+```bash
+# Clone du repository
+git clone https://github.com/isep-erp/isep-erp-platform.git
+cd isep-erp-platform/docker
+
+# Configuration personnalisée
+cp .env.example .env
+# Éditer .env avec vos paramètres
+
+# Déploiement automatique
+./deploy.sh
+```
+
+### Support Communautaire
+- **Documentation complète** : Guides d'installation et d'utilisation
+- **Forums d'entraide** : Support communautaire gratuit
+- **Tutoriels vidéo** : Formation en ligne
+- **Webinaires mensuels** : Partage d'expériences
+- **Meetups locaux** : Réseaux d'utilisateurs
+
+### Contribuer au Projet
+- **Code** : Développement de nouvelles fonctionnalités
+- **Traduction** : Adaptation à d'autres langues
+- **Documentation** : Amélioration des guides
+- **Tests** : Validation et rapports de bugs
+- **Support** : Aide aux nouveaux utilisateurs
 
