@@ -1,61 +1,53 @@
-# 🎓 ISEP Platform - Plateforme de Communication et Services Étudiants
+# 🎓 ISEP Platform - SaaS de Communication pour Établissements d'Enseignement
 
 ## 📋 Description du Projet
 
-L'Institut Supérieur d'Enseignement Professionnel (ISEP) souhaite développer une application mobile et web dédiée à la gestion de la communication interne au sein de l'établissement, tout en permettant aux étudiants de partager leurs compétences et services professionnels.
+ISEP Platform est une solution SaaS B2B conçue pour les établissements d'enseignement supérieur en Afrique de l'Ouest. Notre plateforme permet aux écoles, universités et centres de formation de gérer leur communication interne, leurs activités et d'analyser leurs performances via un tableau de bord analytics complet.
 
-## 🎯 Objectifs du Projet
+## 🎯 Modèle Économique
 
-### 1. Communication Interne
-- Faciliter les échanges entre étudiants, enseignants et administration
-- Messagerie instantanée individuelle et de groupe
-- Forums de discussion par spécialité/programme
+### Abonnements B2B
+- **Basic** : 50€/mois - Jusqu'à 200 étudiants
+- **Premium** : 100€/mois - Jusqu'à 500 étudiants  
+- **Enterprise** : 200€/mois - Jusqu'à 2000 étudiants
 
-### 2. Partage de Services Étudiants
-- Annuaire des services proposés par les étudiants
-- Système de notation et commentaires
-- Recherche par domaine de compétence ou localisation
-
-### 3. Gestion d'Informations Pratiques
-- Actualités et annonces administratives
-- Calendrier des activités scolaires
-- Gestion des bus de ramassage avec suivi en temps réel
+### Marché Cible
+- Écoles privées et publiques en Afrique de l'Ouest
+- Centres de formation professionnelle
+- Universités privées
+- Instituts spécialisés
 
 ## 🚀 Fonctionnalités Principales
 
-### 1. Authentification et Gestion des Utilisateurs
-- ✅ Inscription avec vérification email ou numéro d'étudiant
-- ✅ Authentification avec compte ISEP unique
-- ✅ Gestion des rôles (étudiant, enseignant, administration)
+### 1. Gestion Multi-Établissements
+- ✅ Création et administration de plusieurs écoles
+- ✅ Gestion des abonnements et facturation
+- ✅ Contrôle d'accès par établissement
+- ✅ Analytics par école et global
 
-### 2. Espace Services Étudiants
-- ✅ Publication de services par domaine de compétence
-- ✅ Système de notation et commentaires
-- ✅ Recherche et filtrage avancé
-- ✅ Réservation de services
+### 2. Communication Interne
+- ✅ Messagerie instantanée individuelle et de groupe
+- ✅ Forums de discussion par spécialité/programme
+- ✅ Annonces administratives avec priorités
+- ✅ Notifications en temps réel
 
-### 3. Messagerie et Communication
-- ✅ Chat individuel en temps réel
-- ✅ Chat de groupe
-- ✅ Forums par spécialité
-- ✅ Notifications push
-
-### 4. Gestion des Bus de Ramassage
-- ✅ Suivi en temps réel via carte interactive
-- ✅ Inscription aux trajets
-- ✅ Notifications d'arrivée
-- ✅ Signalement de retards
-
-### 5. Calendrier et Activités
+### 3. Gestion d'Activités
 - ✅ Calendrier interactif des événements
-- ✅ Inscription en ligne aux activités
-- ✅ Notifications push pour rappels
-- ✅ Gestion des places disponibles
+- ✅ Création et gestion d'activités (cours, examens, ateliers)
+- ✅ Inscription en ligne avec gestion des places
+- ✅ Rappels automatiques
 
-### 6. Informations Administratives
-- ✅ Section dédiée aux annonces
-- ✅ Téléchargement de documents
-- ✅ Diffusion d'informations importantes
+### 4. Analytics pour Directions
+- ✅ Tableau de bord de performance
+- ✅ Métriques d'engagement des utilisateurs
+- ✅ Statistiques d'utilisation par fonctionnalité
+- ✅ Rapports de croissance et tendances
+
+### 5. Administration Centralisée
+- ✅ Gestion des utilisateurs et rôles
+- ✅ Modération de contenu
+- ✅ Export de données
+- ✅ Sécurité multi-niveaux
 
 ## 🛠️ Technologies
 
@@ -68,21 +60,18 @@ L'Institut Supérieur d'Enseignement Professionnel (ISEP) souhaite développer u
 - **Base de données** : PostgreSQL (principal) + Redis (cache)
 
 ### Frontend Web
-- **Framework** : React.js 18+ ou Vue.js 3+
-- **UI Framework** : Material-UI ou Tailwind CSS
-- **State Management** : Redux Toolkit ou Pinia
+- **Framework** : React.js 18+ avec TypeScript
+- **UI Framework** : Material-UI v5
+- **State Management** : Zustand
 - **WebSocket Client** : Socket.IO Client
-
-### Application Mobile
-- **Framework** : Flutter 3.x ou React Native
-- **Push Notifications** : Firebase Cloud Messaging
-- **WebSocket** : Socket.IO pour temps réel
+- **Design** : Responsive et Mobile-First
 
 ### Infrastructure
-- **API Maps** : Google Maps API ou OpenStreetMap
-- **Notifications** : Firebase Cloud Messaging
-- **File Storage** : AWS S3 ou Cloudinary
-- **CI/CD** : GitHub Actions ou GitLab CI
+- **Base de données** : PostgreSQL
+- **Cache** : Redis
+- **File Storage** : Cloudinary/AWS S3
+- **CI/CD** : GitHub Actions
+- **Monitoring** : Analytics intégré
 
 ## 📁 Structure du Projet
 
@@ -102,7 +91,7 @@ isep-platform/
 │   │   │   └── resources/
 │   │   └── test/
 │   └── pom.xml
-├── frontend-web/           # Application React/Vue
+├── frontend-web/           # Application React
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
@@ -110,9 +99,6 @@ isep-platform/
 │   │   ├── store/
 │   │   └── utils/
 │   └── package.json
-├── mobile/                 # Application Flutter/React Native
-│   ├── lib/                # Flutter
-│   └── src/                # React Native
 ├── docs/                   # Documentation
 │   ├── architecture/
 │   ├── api/
@@ -138,29 +124,36 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
-### Installation Frontend Web
+### Installation Frontend
 ```bash
 cd frontend-web
 npm install
 npm run dev
 ```
 
-### Installation Mobile
-```bash
-cd mobile
-# Flutter
-flutter pub get
-flutter run
-
-# React Native
-npm install
-npm run android/ios
-```
-
 ### Docker Compose (Tout en un)
 ```bash
 docker-compose up -d
 ```
+
+## 💡 Modèle d'Affaires
+
+### Revenus Récurrents (MRR/ARR)
+- **Abonnements mensuels** : 50-200€ par école
+- **Target initial** : 100 écoles en 12 mois
+- **Potentiel** : 10k-20k€/mois récurrents
+- **Expansion** : 500 écoles en 24 mois
+
+### Avantages Concurrentiels
+- Solution locale adaptée au contexte africain
+- Prix compétitif vs solutions occidentales
+- Support en français et langues locales
+- Focus sur les besoins spécifiques des écoles ouest-africaines
+
+### Stratégie de Go-to-Market
+- **Phase 1** : Pilote avec 10 écoles au Sénégal
+- **Phase 2** : Expansion au Mali, Burkina, Côte d'Ivoire
+- **Phase 3** : Toute l'Afrique de l'Ouest
 
 ## 📚 Documentation
 
@@ -180,24 +173,40 @@ docker-compose up -d
 
 ## 📊 État du Projet
 
-- [ ] Architecture définie
-- [ ] Backend API en développement
-- [ ] Frontend Web en développement
-- [ ] Application Mobile en développement
-- [ ] Tests unitaires et d'intégration
+- [x] Architecture SaaS B2B définie
+- [x] Backend API avec gestion multi-écoles
+- [x] Frontend Web responsive
+- [x] Modèle d'abonnement implémenté
+- [x] Analytics pour directions
+- [x] Tests unitaires et d'intégration
 - [ ] Documentation complète
 - [ ] Déploiement production
 
 ## 🤝 Contribution
 
-Ce projet est développé pour l'ISEP. Pour contribuer, voir [CONTRIBUTING.md](./CONTRIBUTING.md)
+Ce projet est développé comme une solution SaaS commerciale. Pour les partenariats ou collaborations, voir [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## 📝 Licence
 
-Propriétaire - ISEP © 2026
+Propriétaire - ISEP Platform © 2026
 
 ---
 
-**Version** : 1.0.0  
-**Dernière mise à jour** : 2026-02-16
+**Version** : 2.0.0 - Pivot B2B SaaS  
+**Dernière mise à jour** : 2026-02-18
+
+## 🎯 Pivot Stratégique Réussi
+
+**Avant le pivot** : Application étudiante mono-école sans modèle économique  
+**Après le pivot** : Solution SaaS B2B multi-écoles avec revenus récurrents
+
+**Changements majeurs** :
+- ❌ Suppression des services étudiants et bus tracking
+- ❌ Retrait de l'application mobile Flutter
+- ✅ Ajout du modèle d'abonnement B2B
+- ✅ Support multi-établissements
+- ✅ Analytics avancés pour directions
+- ✅ Focus sur le marché ouest-africain
+
+**Nouveau potentiel** : 100k-200k€ ARR en 24 mois
 
