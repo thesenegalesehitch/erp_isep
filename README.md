@@ -236,34 +236,6 @@ docker-compose up -d
 - [ ] Documentation complète
 - [ ] Déploiement production
 
-## 🎯 Pivot Open Source Réussi
-
-**Avant le pivot** : SaaS B2B2C parent-connect sans marché  
-**Après le pivot** : ERP Open Source gratuit pour tous les établissements
-
-**Changements majeurs** :
-- ❌ Suppression complète du modèle parent-connect
-- ❌ Retrait focus commercial et licences payantes
-- ✅ ERP 100% gratuit et open source
-- ✅ Tous les modules inclus sans restriction
-- ✅ Interface d'administration complète
-- ✅ Déploiement autonome par établissement
-- ✅ Documentation complète et support communautaire
-
-**Nouveau potentiel** : Adoption illimitée et impact social maximal
-
----
-
-**Version** : 5.0.0 - ERP Open Source Gratuit  
-**Dernière mise à jour** : 2026-02-18
-
-## 📞 Contact & Communauté
-
-- **GitHub** : https://github.com/isep-erp/isep-erp-platform
-- **Email** : contact@isep-erp.sn
-- **Téléphone** : +221 33 825 79 25
-- **Site Web** : https://isep-erp.sn
-- **Adresse** : Avenue Cheikh Anta Diop, Dakar, Sénégal
 
 ## 🤝 Contribuer
 
