@@ -37,14 +37,7 @@ function Navbar() {
             >
               Dashboard
             </Button>
-            <Button
-              color="inherit"
-              onClick={() => navigate('/services')}
-              sx={{ mr: 1 }}
-            >
-              Services
-            </Button>
-            <Button
+                        <Button
               color="inherit"
               onClick={() => navigate('/messaging')}
               sx={{ mr: 1 }}
@@ -57,13 +50,6 @@ function Navbar() {
               sx={{ mr: 1 }}
             >
               Calendrier
-            </Button>
-            <Button
-              color="inherit"
-              onClick={() => navigate('/bus')}
-              sx={{ mr: 1 }}
-            >
-              Bus
             </Button>
             <Button color="inherit" onClick={handleLogout}>
               Déconnexion

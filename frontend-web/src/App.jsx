@@ -5,10 +5,8 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
-import ServicesPage from './pages/services/ServicesPage'
 import MessagingPage from './pages/messaging/MessagingPage'
 import CalendarPage from './pages/calendar/CalendarPage'
-import BusPage from './pages/bus/BusPage'
 import ForumPage from './pages/forum/ForumPage'
 
 function App() {
@@ -21,10 +19,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/services" element={<ServicesPage />} />
           <Route path="/messaging" element={<MessagingPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/bus" element={<BusPage />} />
           <Route path="/forum" element={<ForumPage />} />
         </Routes>
       </Box>
