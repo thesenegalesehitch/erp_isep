@@ -254,7 +254,5 @@ Ce projet est sous licence **MIT** - Voir le fichier [LICENSE](LICENSE) pour plu
 
 ## 🙏 Remerciements
 
-- ISEP - Institut Supérieur d'Enseignement Professionnel (Premier client pilote)
-- Ministère de l'Enseignement Supérieur du Sénégal
-- Tous les établissements partenaires pour leurs retours précieux
+- ISEP - Institut Supérieur d'Enseignement Professionnel (Pour la formation)
 
