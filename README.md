@@ -1,53 +1,59 @@
-# 🎓 ISEP Platform - SaaS de Communication pour Établissements d'Enseignement
+# 🎓 ISEP Parent Connect - SaaS B2B2C pour Écoles et Parents
 
 ## 📋 Description du Projet
 
-ISEP Platform est une solution SaaS B2B conçue pour les établissements d'enseignement supérieur en Afrique de l'Ouest. Notre plateforme permet aux écoles, universités et centres de formation de gérer leur communication interne, leurs activités et d'analyser leurs performances via un tableau de bord analytics complet.
+ISEP Parent Connect est une solution SaaS B2B2C révolutionnaire qui connecte les établissements d'enseignement aux parents d'élèves en Afrique de l'Ouest. Notre plateforme permet aux écoles d'offrir un service premium aux parents pour suivre la scolarité de leurs enfants en temps réel.
 
-## 🎯 Modèle Économique
+## 🎯 Modèle Économique (Pivot Stratégique)
 
-### Abonnements B2B
-- **Basic** : 50€/mois - Jusqu'à 200 étudiants
-- **Premium** : 100€/mois - Jusqu'à 500 étudiants  
-- **Enterprise** : 200€/mois - Jusqu'à 2000 étudiants
+### Abonnements Parents (B2B2C)
+- **FREE** : Gratuit - 1 élève maximum, fonctionnalités de base
+- **PREMIUM** : 10€/mois - Jusqu'à 5 élèves, fonctionnalités complètes
 
-### Marché Cible
-- Écoles privées et publiques en Afrique de l'Ouest
-- Centres de formation professionnelle
-- Universités privées
-- Instituts spécialisés
+### Écoles (Partenaires Gratuit)
+- **FREE** : Accès gratuit pour toutes les écoles
+- **Analytics** : Tableau de bord engagement parents
+- **Communication** : Messagerie avec les parents
+- **Revenus** : Commission sur les paiements scolaires
 
 ## 🚀 Fonctionnalités Principales
 
-### 1. Gestion Multi-Établissements
-- ✅ Création et administration de plusieurs écoles
-- ✅ Gestion des abonnements et facturation
-- ✅ Contrôle d'accès par établissement
-- ✅ Analytics par école et global
+### 1. Dashboard Parent
+- ✅ Vue d'ensemble de tous les enfants
+- ✅ Notifications importantes en temps réel
+- ✅ Actions rapides (paiements, notes, présence)
+- ✅ Résumés par élève avec moyennes
 
-### 2. Communication Interne
-- ✅ Messagerie instantanée individuelle et de groupe
-- ✅ Forums de discussion par spécialité/programme
-- ✅ Annonces administratives avec priorités
-- ✅ Notifications en temps réel
+### 2. Suivi Académique
+- ✅ Notes en temps réel avec graphiques
+- ✅ Moyennes par semestre/matière
+- ✅ Commentaires des professeurs
+- ✅ Historique complet des évaluations
 
-### 3. Gestion d'Activités
-- ✅ Calendrier interactif des événements
-- ✅ Création et gestion d'activités (cours, examens, ateliers)
-- ✅ Inscription en ligne avec gestion des places
-- ✅ Rappels automatiques
+### 3. Présence et Absences
+- ✅ Suivi journalier de présence
+- ✅ Statistiques et taux de présence
+- ✅ Notifications d'absences
+- ✅ Justifications d'absences
 
-### 4. Analytics pour Directions
-- ✅ Tableau de bord de performance
-- ✅ Métriques d'engagement des utilisateurs
-- ✅ Statistiques d'utilisation par fonctionnalité
-- ✅ Rapports de croissance et tendances
+### 4. Paiements Scolaires
+- ✅ Paiement des frais de scolarité en ligne
+- ✅ Intégration Mobile Money (Orange, Wave, MTN)
+- ✅ Notifications d'échéances
+- ✅ Historique des paiements
+- ✅ Gestion des frais de retard
 
-### 5. Administration Centralisée
-- ✅ Gestion des utilisateurs et rôles
-- ✅ Modération de contenu
-- ✅ Export de données
-- ✅ Sécurité multi-niveaux
+### 5. Liaison Parent-Élève
+- ✅ Connexion sécurisée avec code de vérification
+- ✅ Gestion multi-élèves par parent
+- ✅ Types de relation (Père, Mère, Tuteur...)
+- ✅ Validation par l'école
+
+### 6. Communication
+- ✅ Messagerie directe avec l'école
+- ✅ Annonces importantes
+- ✅ Notifications push
+- ✅ Documents partagés
 
 ## 🛠️ Technologies
 
@@ -136,24 +142,29 @@ npm run dev
 docker-compose up -d
 ```
 
-## 💡 Modèle d'Affaires
+## 💡 Modèle d'Affaires Pivoté
 
 ### Revenus Récurrents (MRR/ARR)
-- **Abonnements mensuels** : 50-200€ par école
-- **Target initial** : 100 écoles en 12 mois
-- **Potentiel** : 10k-20k€/mois récurrents
-- **Expansion** : 500 écoles en 24 mois
+- **Abonnements parents** : 10€/mois par parent premium
+- **Target initial** : 1000 parents premium en 12 mois
+- **Potentiel** : 10k€/mois récurrents
+- **Expansion** : 5000 parents premium en 24 mois
+
+### Commission sur Paiements
+- **Commission école** : 2-3% sur les paiements scolaires
+- **Volume estimé** : 1M€ XOF/mois par école partenaire
+- **Revenus passifs** : Sans effort commercial
 
 ### Avantages Concurrentiels
-- Solution locale adaptée au contexte africain
-- Prix compétitif vs solutions occidentales
-- Support en français et langues locales
-- Focus sur les besoins spécifiques des écoles ouest-africaines
+- **Modèle B2B2C unique** sur le marché
+- **CAC divisé par 10** via les écoles partenaires
+- **LTV multipliée par 5** avec engagement parental
+- **Effet réseau** : Plus de parents = plus de valeur pour les écoles
 
 ### Stratégie de Go-to-Market
-- **Phase 1** : Pilote avec 10 écoles au Sénégal
-- **Phase 2** : Expansion au Mali, Burkina, Côte d'Ivoire
-- **Phase 3** : Toute l'Afrique de l'Ouest
+- **Phase 1** : 20 écoles pilotes au Sénégal (gratuit)
+- **Phase 2** : 100 écoles avec 50 parents premium par école
+- **Phase 3** : Expansion Mali, Burkina, Côte d'Ivoire
 
 ## 📚 Documentation
 
@@ -173,40 +184,34 @@ docker-compose up -d
 
 ## 📊 État du Projet
 
-- [x] Architecture SaaS B2B définie
-- [x] Backend API avec gestion multi-écoles
-- [x] Frontend Web responsive
-- [x] Modèle d'abonnement implémenté
-- [x] Analytics pour directions
+- [x] Architecture B2B2C parent-centric définie
+- [x] Backend API avec gestion parent-élève
+- [x] Frontend Web responsive pour parents
+- [x] Système de paiement Mobile Money intégré
+- [x] Dashboard parent avec analytics
+- [x] Système de liaison parent-élève sécurisé
 - [x] Tests unitaires et d'intégration
 - [ ] Documentation complète
 - [ ] Déploiement production
 
-## 🤝 Contribution
+## 🎯 Pivot Stratégique Réussi
 
-Ce projet est développé comme une solution SaaS commerciale. Pour les partenariats ou collaborations, voir [CONTRIBUTING.md](./CONTRIBUTING.md)
+**Avant le pivot** : SaaS B2B écoles avec CAC élevé et LTV faible  
+**Après le pivot** : SaaS B2B2C parents avec CAC faible et LTV élevée
 
-## 📝 Licence
+**Changements majeurs** :
+- ❌ Suppression abonnements écoles payants
+- ❌ Retrait focus communication interne
+- ✅ Ajout abonnements parents premium
+- ✅ Système de paiement Mobile Money
+- ✅ Dashboard parent centré
+- ✅ Liaison sécurisée parent-élève
+- ✅ Focus marché ouest-africain
 
-Propriétaire - ISEP Platform © 2026
+**Nouveau potentiel** : 100k-200k€ ARR en 24 mois
 
 ---
 
-**Version** : 2.0.0 - Pivot B2B SaaS  
+**Version** : 3.0.0 - Pivot B2B2C Parent Connect  
 **Dernière mise à jour** : 2026-02-18
-
-## 🎯 Pivot Stratégique Réussi
-
-**Avant le pivot** : Application étudiante mono-école sans modèle économique  
-**Après le pivot** : Solution SaaS B2B multi-écoles avec revenus récurrents
-
-**Changements majeurs** :
-- ❌ Suppression des services étudiants et bus tracking
-- ❌ Retrait de l'application mobile Flutter
-- ✅ Ajout du modèle d'abonnement B2B
-- ✅ Support multi-établissements
-- ✅ Analytics avancés pour directions
-- ✅ Focus sur le marché ouest-africain
-
-**Nouveau potentiel** : 100k-200k€ ARR en 24 mois
 
