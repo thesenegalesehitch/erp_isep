@@ -87,7 +87,8 @@ public class User {
     public enum Role {
         STUDENT,
         TEACHER,
-        ADMIN
+        ADMIN,
+        PARENT
     }
     
     public String getFullName() {
