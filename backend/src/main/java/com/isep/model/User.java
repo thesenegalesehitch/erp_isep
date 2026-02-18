@@ -63,20 +63,15 @@ public class User {
     @Column(name = "email_verification_token")
     private String emailVerificationToken;
     
-    @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Service> services = new HashSet<>();
-    
-    @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ServiceRequest> serviceRequests = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id", nullable = false)
+    private School school;
     
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Message> sentMessages = new HashSet<>();
     
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Message> receivedMessages = new HashSet<>();
-    
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BusReservation> busReservations = new HashSet<>();
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ActivityRegistration> activityRegistrations = new HashSet<>();

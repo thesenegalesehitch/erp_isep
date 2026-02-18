@@ -53,6 +53,10 @@ public class Activity {
     @JoinColumn(name = "organizer_id", nullable = false)
     private User organizer;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id", nullable = false)
+    private School school;
+    
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ActivityRegistration> registrations = new HashSet<>();
     

@@ -42,6 +42,10 @@ public class Announcement {
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id", nullable = false)
+    private School school;
+    
     @ElementCollection
     @CollectionTable(name = "announcement_attachments", joinColumns = @JoinColumn(name = "announcement_id"))
     @Column(name = "file_url")
