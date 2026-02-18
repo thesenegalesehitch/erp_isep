@@ -1,59 +1,78 @@
-# 🎓 ISEP Parent Connect - SaaS B2B2C pour Écoles et Parents
+# 🎓 ISEP ERP - Système de Gestion Complet pour Établissements d'Enseignement
 
 ## 📋 Description du Projet
 
-ISEP Parent Connect est une solution SaaS B2B2C révolutionnaire qui connecte les établissements d'enseignement aux parents d'élèves en Afrique de l'Ouest. Notre plateforme permet aux écoles d'offrir un service premium aux parents pour suivre la scolarité de leurs enfants en temps réel.
+ISEP ERP est une solution ERP modulable révolutionnaire conçue pour les établissements d'enseignement supérieur en Afrique de l'Ouest. Notre plateforme s'adapte à tous les types d'établissements : universités publiques, universités privées, instituts professionnels, écoles techniques et écoles de commerce.
 
-## 🎯 Modèle Économique (Pivot Stratégique)
+## 🎯 Modèle Économique (Pivot ERP)
 
-### Abonnements Parents (B2B2C)
-- **FREE** : Gratuit - 1 élève maximum, fonctionnalités de base
-- **PREMIUM** : 10€/mois - Jusqu'à 5 élèves, fonctionnalités complètes
+### Licences Établissements (B2B)
+- **PETIT** (<500 étudiants) : 2M FCFA/an
+- **MOYEN** (500-2000 étudiants) : 5M FCFA/an  
+- **GRAND** (>2000 étudiants) : 10M FCFA/an
+- **PERSONNALISÉ** : Sur devis
 
-### Écoles (Partenaires Gratuit)
-- **FREE** : Accès gratuit pour toutes les écoles
-- **Analytics** : Tableau de bord engagement parents
-- **Communication** : Messagerie avec les parents
-- **Revenus** : Commission sur les paiements scolaires
+### Modules Optionnels
+- **Gestion des Cités U** : 500k FCFA/module/an
+- **Restauration Universitaire** : 500k FCFA/module/an
+- **Laboratoires de Recherche** : 500k FCFA/module/an
+- **Partenariats Entreprises** : 500k FCFA/module/an
+
+### Services Additionnels
+- **Maintenance** : 20% de licence/an
+- **Formation** : 1M FCFA/session
+- **Hébergement Cloud** : 200k FCFA/mois
 
 ## 🚀 Fonctionnalités Principales
 
-### 1. Dashboard Parent
-- ✅ Vue d'ensemble de tous les enfants
-- ✅ Notifications importantes en temps réel
-- ✅ Actions rapides (paiements, notes, présence)
-- ✅ Résumés par élève avec moyennes
+### 1. Gestion Académique Core
+- ✅ Inscriptions et admissions en ligne
+- ✅ Gestion des étudiants et dossiers complets
+- ✅ Catalogue de cours et programmes
+- ✅ Emploi du temps automatique
+- ✅ Suivi des notes et évaluations
+- ✅ Bulletins et relevés de notes
 
-### 2. Suivi Académique
-- ✅ Notes en temps réel avec graphiques
-- ✅ Moyennes par semestre/matière
-- ✅ Commentaires des professeurs
-- ✅ Historique complet des évaluations
+### 2. Administration Établissement
+- ✅ Configuration multi-établissements
+- ✅ Gestion des utilisateurs et permissions
+- ✅ Ressources humaines (personnel, enseignants)
+- ✅ Finances et comptabilité
+- ✅ Infrastructure et équipements
+- ✅ Communication interne
 
-### 3. Présence et Absences
-- ✅ Suivi journalier de présence
-- ✅ Statistiques et taux de présence
-- ✅ Notifications d'absences
-- ✅ Justifications d'absences
+### 3. Modules Optionnels
 
-### 4. Paiements Scolaires
-- ✅ Paiement des frais de scolarité en ligne
-- ✅ Intégration Mobile Money (Orange, Wave, MTN)
-- ✅ Notifications d'échéances
-- ✅ Historique des paiements
-- ✅ Gestion des frais de retard
+#### Module Cités Universitaires
+- ✅ Gestion des résidences et chambres
+- ✅ Affectation automatique
+- ✅ Suivi des paiements de loyer
+- ✅ Maintenance et sécurité
 
-### 5. Liaison Parent-Élève
-- ✅ Connexion sécurisée avec code de vérification
-- ✅ Gestion multi-élèves par parent
-- ✅ Types de relation (Père, Mère, Tuteur...)
-- ✅ Validation par l'école
+#### Module Restauration
+- ✅ Gestion des restaurants universitaires
+- ✅ Plans de repas et cartes étudiantes
+- ✅ Suivi des stocks et nutrition
+- ✅ Paiements et statistiques
 
-### 6. Communication
-- ✅ Messagerie directe avec l'école
-- ✅ Annonces importantes
-- ✅ Notifications push
-- ✅ Documents partagés
+#### Module Recherche
+- ✅ Gestion des projets de recherche
+- ✅ Laboratoires et équipements
+- ✅ Publications et brevets
+- ✅ Collaborations internationales
+
+#### Module Entreprises
+- ✅ Partenariats et conventions
+- ✅ Stages et alternance
+- ✅ Insertion professionnelle
+- ✅ Réseau alumni
+
+### 4. Analytics et Rapports
+- ✅ Tableau de bord en temps réel
+- ✅ Rapports personnalisables
+- ✅ Analytics académiques
+- ✅ Indicateurs de performance
+- ✅ Export et sauvegarde
 
 ## 🛠️ Technologies
 
@@ -82,33 +101,56 @@ ISEP Parent Connect est une solution SaaS B2B2C révolutionnaire qui connecte le
 ## 📁 Structure du Projet
 
 ```
-isep-platform/
+isep-erp-platform/
 ├── backend/                 # API Spring Boot
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
 │   │   │   │   └── com/isep/
 │   │   │   │       ├── controller/
+│   │   │   │       │   ├── SchoolController.java
+│   │   │   │       │   ├── StudentController.java
+│   │   │   │       │   ├── CourseController.java
+│   │   │   │       │   ├── EnrollmentController.java
+│   │   │   │       │   ├── GradeController.java
+│   │   │   │       │   └── ScheduleController.java
 │   │   │   │       ├── service/
 │   │   │   │       ├── repository/
 │   │   │   │       ├── model/
+│   │   │   │       │   ├── School.java
+│   │   │   │       │   ├── Student.java
+│   │   │   │       │   ├── Course.java
+│   │   │   │       │   ├── Enrollment.java
+│   │   │   │       │   ├── Grade.java
+│   │   │   │       │   └── CourseSchedule.java
 │   │   │   │       ├── security/
 │   │   │   │       └── config/
 │   │   │   └── resources/
 │   │   └── test/
 │   └── pom.xml
-├── frontend-web/           # Application React
+├── frontend-web/           # Application React ERP
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
+│   │   │   ├── auth/
+│   │   │   ├── erp/
+│   │   │   │   ├── StudentsPage.jsx
+│   │   │   │   ├── CoursesPage.jsx
+│   │   │   │   ├── EnrollmentsPage.jsx
+│   │   │   │   ├── GradesPage.jsx
+│   │   │   │   ├── SchedulePage.jsx
+│   │   │   │   ├── SchoolsPage.jsx
+│   │   │   │   ├── ReportsPage.jsx
+│   │   │   │   └── SettingsPage.jsx
+│   │   │   └── DashboardPage.jsx
 │   │   ├── services/
-│   │   ├── store/
 │   │   └── utils/
 │   └── package.json
 ├── docs/                   # Documentation
 │   ├── architecture/
 │   ├── api/
-│   └── user-guide/
+│   ├── user-guide/
+│   └── business-plan/
 └── docker/                 # Configuration Docker
     ├── docker-compose.yml
     └── Dockerfile.*
@@ -142,29 +184,28 @@ npm run dev
 docker-compose up -d
 ```
 
-## 💡 Modèle d'Affaires Pivoté
+## 💡 Modèle d'Affaires ERP
 
 ### Revenus Récurrents (MRR/ARR)
-- **Abonnements parents** : 10€/mois par parent premium
-- **Target initial** : 1000 parents premium en 12 mois
-- **Potentiel** : 10k€/mois récurrents
-- **Expansion** : 5000 parents premium en 24 mois
-
-### Commission sur Paiements
-- **Commission école** : 2-3% sur les paiements scolaires
-- **Volume estimé** : 1M€ XOF/mois par école partenaire
-- **Revenus passifs** : Sans effort commercial
+- **Licences établissements** : 2-10M FCFA/an par établissement
+- **Modules optionnels** : 500k FCFA/module/an
+- **Services additionnels** : Maintenance, formation, hébergement
+- **Target initial** : 20 établissements pilotes en 12 mois
+- **Potentiel** : 200M FCFA/an récurrents
+- **Expansion** : 100+ établissements en 24 mois
 
 ### Avantages Concurrentiels
-- **Modèle B2B2C unique** sur le marché
-- **CAC divisé par 10** via les écoles partenaires
-- **LTV multipliée par 5** avec engagement parental
-- **Effet réseau** : Plus de parents = plus de valeur pour les écoles
+- **Modulaire** : Configuration par type d'établissement
+- **Localisé** : Adapté au contexte sénégalais et ouest-africain
+- **Scalable** : De l'institut professionnel à l'université complète
+- **Intégré** : Tous les modules sur une seule plateforme
+- **Support local** : Formation et maintenance locale
 
 ### Stratégie de Go-to-Market
-- **Phase 1** : 20 écoles pilotes au Sénégal (gratuit)
-- **Phase 2** : 100 écoles avec 50 parents premium par école
-- **Phase 3** : Expansion Mali, Burkina, Côte d'Ivoire
+- **Phase 1** : ISEP comme premier client pilote (gratuit)
+- **Phase 2** : 20 établissements partenaires (50% réduction)
+- **Phase 3** : Expansion nationale (tarifs complets)
+- **Phase 4** : Expansion UEMOA (francophonie)
 
 ## 📚 Documentation
 
@@ -184,34 +225,51 @@ docker-compose up -d
 
 ## 📊 État du Projet
 
-- [x] Architecture B2B2C parent-centric définie
-- [x] Backend API avec gestion parent-élève
-- [x] Frontend Web responsive pour parents
-- [x] Système de paiement Mobile Money intégré
-- [x] Dashboard parent avec analytics
-- [x] Système de liaison parent-élève sécurisé
+- [x] Architecture ERP modulable définie
+- [x] Backend API avec gestion multi-établissements
+- [x] Frontend Web responsive pour administration
+- [x] Modèles de données ERP core (School, Student, Course, etc.)
+- [x] Interface utilisateur complète avec 8 pages ERP
+- [x] Configuration modulaire par type d'établissement
 - [x] Tests unitaires et d'intégration
 - [ ] Documentation complète
 - [ ] Déploiement production
 
-## 🎯 Pivot Stratégique Réussi
+## 🎯 Pivot ERP Réussi
 
-**Avant le pivot** : SaaS B2B écoles avec CAC élevé et LTV faible  
-**Après le pivot** : SaaS B2B2C parents avec CAC faible et LTV élevée
+**Avant le pivot** : SaaS B2B2C parent-connect sans marché  
+**Après le pivot** : ERP B2B pour établissements d'enseignement
 
 **Changements majeurs** :
-- ❌ Suppression abonnements écoles payants
-- ❌ Retrait focus communication interne
-- ✅ Ajout abonnements parents premium
-- ✅ Système de paiement Mobile Money
-- ✅ Dashboard parent centré
-- ✅ Liaison sécurisée parent-élève
-- ✅ Focus marché ouest-africain
+- ❌ Suppression complète du modèle parent-connect
+- ❌ Retrait focus communication parent-école
+- ✅ Ajout modèles ERP multi-établissements
+- ✅ Système de licences par taille d'établissement
+- ✅ Interface d'administration complète
+- ✅ Modules optionnels (cités, resto, recherche, entreprises)
+- ✅ Focus marché éducation Sénégal/UEMOA
 
-**Nouveau potentiel** : 100k-200k€ ARR en 24 mois
+**Nouveau potentiel** : 500M FCFA ARR en 24 mois
 
 ---
 
-**Version** : 3.0.0 - Pivot B2B2C Parent Connect  
+**Version** : 4.0.0 - Pivot ERP Éducation  
 **Dernière mise à jour** : 2026-02-18
+
+## 📞 Contact
+
+- **Email** : contact@isep-erp.sn
+- **Téléphone** : +221 33 825 79 25
+- **Site Web** : https://isep-erp.sn
+- **Adresse** : Avenue Cheikh Anta Diop, Dakar, Sénégal
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## 🙏 Remerciements
+
+- ISEP - Institut Supérieur d'Enseignement Professionnel (Premier client pilote)
+- Ministère de l'Enseignement Supérieur du Sénégal
+- Tous les établissements partenaires pour leurs retours précieux
 

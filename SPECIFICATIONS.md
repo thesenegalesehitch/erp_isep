@@ -1,285 +1,347 @@
-# 📋 Spécifications Techniques - ISEP Platform
+# 📋 Spécifications Techniques - ISEP ERP Platform
 
 ## 🎯 Vue d'Ensemble
 
-Application mobile et web pour la gestion de la communication interne et le partage de services entre étudiants de l'ISEP.
+ERP modulable pour la gestion complète des établissements d'enseignement supérieur en Afrique de l'Ouest. Solution adaptable aux universités publiques, privées, instituts professionnels et écoles techniques.
 
 ## 👥 Acteurs et Rôles
 
-### 1. Étudiant
-- Consulter les actualités et annonces
-- Publier des services professionnels
-- Réserver des services
-- Utiliser la messagerie
-- Consulter le calendrier
-- S'inscrire aux activités
-- Gérer les bus de ramassage
+### 1. Administrateur Système
+- Gestion multi-établissements
+- Configuration des modules
+- Administration des utilisateurs
+- Sauvegardes et maintenance
+- Analytics et rapports
 
-### 2. Enseignant
-- Publier des annonces de cours
-- Communiquer avec les étudiants
-- Gérer les activités de sa spécialité
-- Consulter les services étudiants
+### 2. Administrateur Établissement
+- Configuration de l'établissement
+- Gestion des étudiants et personnel
+- Définition des programmes et cours
+- Supervision des inscriptions
+- Rapports académiques
 
-### 3. Administration
-- Gérer tous les utilisateurs
-- Publier des annonces administratives
-- Gérer les bus de ramassage
-- Gérer le calendrier institutionnel
-- Modérer les contenus
-- Gérer les documents administratifs
+### 3. Secrétaire Académique
+- Gestion des inscriptions
+- Traitement des dossiers étudiants
+- Émission des documents officiels
+- Suivi des paiements
+- Communication étudiants
+
+### 4. Enseignant
+- Gestion des cours et emplois du temps
+- Saisie des notes et évaluations
+- Suivi de la présence
+- Communication avec les étudiants
+- Ressources pédagogiques
+
+### 5. Étudiant
+- Consultation des cours et notes
+- Gestion de l'inscription
+- Accès aux ressources
+- Communication administrative
+- Suivi académique
 
 ## 📱 Modules Fonctionnels
 
-### Module 1 : Authentification et Gestion des Comptes
+### Module 1 : Gestion Académique
 
-#### 1.1 Inscription
-- Champs requis : nom, prénom, email ISEP, numéro étudiant, mot de passe
-- Vérification email ou validation par numéro étudiant
-- Attribution automatique du rôle selon le type de compte
-- Activation du compte
+#### 1.1 Gestion des Étudiants
+- Dossier étudiant complet
+- Inscriptions et réinscriptions
+- Suivi académique
+- Historique scolaire
+- Documents officiels
 
-#### 1.2 Connexion
-- Authentification par email/numéro étudiant + mot de passe
-- Option "Se souvenir de moi"
-- Réinitialisation de mot de passe
-- Gestion de session (JWT tokens)
+#### 1.2 Gestion des Cours
+- Catalogue de cours
+- Programmes et spécialités
+- Prérequis et crédits
+- Description et objectifs
+- Ressources pédagogiques
 
-#### 1.3 Profil Utilisateur
-- Informations personnelles
-- Spécialité/domaine d'études
-- Compétences professionnelles
-- Photo de profil
-- Paramètres de confidentialité
+#### 1.3 Emploi du Temps
+- Gestion automatique
+- Salles et équipements
+- Détection de conflits
+- Exportation calendriers
+- Notifications changements
 
-### Module 2 : Services Étudiants
+#### 1.4 Évaluations et Notes
+- Types d'évaluations
+- Barèmes et poids
+- Saisie et publication
+- Bulletins et relevés
+- Statistiques de performance
 
-#### 2.1 Publication de Services
-- Titre et description
-- Catégorie (mécanique, électricité, plomberie, etc.)
-- Tarifs (optionnel)
-- Localisation
-- Disponibilité
-- Photos/illustrations
+### Module 2 : Administration Établissement
 
-#### 2.2 Recherche et Filtrage
-- Par catégorie
-- Par localisation
-- Par note
-- Par disponibilité
-- Par prix
+#### 2.1 Configuration Multi-Établissements
+- Types d'établissements (public, privé, professionnel)
+- Taille et capacité
+- Modules activés
+- Paramètres académiques
+- Informations légales
 
-#### 2.3 Réservation
-- Calendrier de disponibilité
-- Formulaire de demande
-- Confirmation par le prestataire
-- Statut de la réservation
+#### 2.2 Gestion du Personnel
+- Dossiers employés
+- Contrats et salaires
+- Planning et présence
+- Évaluations
+- Formation continue
 
-#### 2.4 Notation et Avis
-- Système de notation (1-5 étoiles)
-- Commentaires
-- Historique des services rendus
-- Statistiques du prestataire
+#### 2.3 Infrastructure
+- Salles et équipements
+- Laboratoires
+- Bibliothèque
+- Installations sportives
+- Maintenance
 
-### Module 3 : Messagerie
+#### 2.4 Finances
+- Budget et comptabilité
+- Frais de scolarité
+- Bourses et aides
+- Rapports financiers
+- Audit
 
-#### 3.1 Chat Individuel
-- Liste de conversations
-- Messages texte
-- Envoi de fichiers/images
-- Statuts de lecture
-- Notifications en temps réel
+### Module 3 : Modules Optionnels
 
-#### 3.2 Chat de Groupe
-- Création de groupes
-- Gestion des membres
-- Partage de fichiers
-- Notifications de groupe
+#### 3.1 Cités Universitaires (si activé)
+- Gestion des résidences
+- Affectation des chambres
+- Paiements loyers
+- Maintenance
+- Sécurité
 
-#### 3.3 Forums
-- Forums par spécialité
-- Création de sujets
-- Réponses et commentaires
-- Modération
-- Recherche dans les forums
+#### 3.2 Restauration (si activé)
+- Restaurants universitaires
+- Plans de repas
+- Cartes étudiantes
+- Stocks et nutrition
+- Statistiques
 
-### Module 4 : Bus de Ramassage
+#### 3.3 Recherche (si activé)
+- Projets de recherche
+- Laboratoires
+- Publications
+- Collaborations
+- Budget recherche
 
-#### 4.1 Suivi en Temps Réel
-- Carte interactive avec position des bus
-- Estimation temps d'arrivée
-- Statut du bus (en route, arrivé, retardé)
-- Notifications push
+#### 3.4 Entreprises (si activé)
+- Partenariats
+- Stages et alternance
+- Insertion professionnelle
+- Alumni
+- Événements
 
-#### 4.2 Inscription aux Trajets
-- Sélection de la ligne
-- Date et heure du trajet
-- Réservation de siège
-- Confirmation par email/SMS
+### Module 4 : Communication et Collaboration
 
-#### 4.3 Signalement
-- Retard de bus
-- Problème technique
-- Annulation de trajet
-- Feedback utilisateur
+#### 4.1 Messagerie Interne
+- Messages directs
+- Groupes et départements
+- Notifications
+- Fichiers partagés
+- Historique
 
-### Module 5 : Calendrier et Activités
+#### 4.2 Annonces et Informations
+- Annonces administratives
+- Calendrier académique
+- Événements
+- Documentation
+- Archives
 
-#### 5.1 Calendrier Interactif
-- Vue mensuelle/semaine/jour
-- Filtrage par type d'activité
-- Couleurs par catégorie
-- Export iCal/Google Calendar
+#### 4.3 Portail Étudiant
+- Accès personnalisé
+- Ressources pédagogiques
+- Services en ligne
+- Support
+- FAQ
 
-#### 5.2 Types d'Activités
-- Cours
-- Examens
-- Ateliers
-- Conférences
-- Activités sportives
-- Sorties
+### Module 5 : Analytics et Rapports
 
-#### 5.3 Inscription
-- Formulaire d'inscription
-- Gestion des places disponibles
-- Liste d'attente
-- Confirmation
-- Rappels automatiques
+#### 5.1 Tableau de Bord
+- Indicateurs clés
+- Statistiques en temps réel
+- Graphiques et visualisations
+- Alertes
+- Export
 
-### Module 6 : Actualités et Annonces
+#### 5.2 Rapports Personnalisés
+- Rapports académiques
+- Rapports financiers
+- Rapports administratifs
+- Rapports réglementaires
+- Archives
 
-#### 6.1 Annonces Administratives
-- Publication par l'administration
-- Catégorisation (urgent, important, info)
-- Pièces jointes
-- Date de publication et expiration
-- Notifications push
+#### 5.3 Analytics Avancés
+- Taux de réussite
+- Performance par programme
+- Tendance inscriptions
+- Satisfaction étudiants
+- Benchmarking
 
-#### 6.2 Annonces par Enseignant
-- Annonces de cours
-- Changements d'horaires
-- Documents de cours
-- Notifications aux étudiants concernés
-
-#### 6.3 Documentation
-- Emplois du temps
-- Règlements intérieurs
-- Circulaires
-- Guides étudiants
-- Téléchargement PDF
-
-## 🔒 Sécurité et Permissions
+## � Sécurité et Permissions
 
 ### Niveaux d'Accès
-1. **Public** : Actualités, services publics
-2. **Étudiant** : Accès complet à ses fonctionnalités
-3. **Enseignant** : Gestion cours + accès étudiant
-4. **Admin** : Accès complet
+1. **Super Admin** : Gestion multi-établissements et configuration système
+2. **Admin Établissement** : Gestion complète de son établissement
+3. **Secrétaire Académique** : Inscriptions, dossiers, documents
+4. **Enseignant** : Gestion cours, notes, présence
+5. **Étudiant** : Consultation et gestion personnelle
+6. **Invité** : Accès limité aux informations publiques
 
 ### Règles de Sécurité
 - Chiffrement des mots de passe (BCrypt)
-- JWT avec expiration
-- HTTPS obligatoire
-- Validation des entrées
-- Protection CSRF
-- Rate limiting
-- Logs d'audit
+- JWT avec expiration et refresh tokens
+- HTTPS obligatoire en production
+- Validation des entrées et sanitization
+- Protection CSRF et XSS
+- Rate limiting par IP et utilisateur
+- Logs d'audit complets
+- Ségrégation des données par établissement
 
 ## 📊 Modèle de Données
 
-### Entités Principales
+### Entités Principales ERP
+
+#### School
+- id, name, code, email, phone, address, city, country
+- schoolType (PUBLIC_UNIVERSITY, PRIVATE_UNIVERSITY, PROFESSIONAL_INSTITUTE, etc.)
+- schoolSize (SMALL, MEDIUM, LARGE, VERY_LARGE)
+- hasDormitories, hasRestaurant, hasResearchLab, hasEnterprisePartnership
+- licenseStart, licenseEnd, isActive
+- maxStudents, currentStudentCount
+- academicYear, rectorName
+
+#### Student
+- id, studentId, firstName, lastName, email, phone
+- birthDate, birthPlace, nationality, address
+- gender, enrollmentDate, graduationDate
+- studyLevel (BACHELOR_1, MASTER_1, etc.)
+- enrollmentStatus (ENROLLED, ON_LEAVE, GRADUATED, etc.)
+- department, program, specialization, academicYear
+- hasScholarship, scholarshipType
+- hasDormitory, dormitoryRoom
+- hasMealPlan, mealPlanType
+- school (FK)
+
+#### Course
+- id, courseCode, title, description
+- department, program, courseType (MANDATORY, OPTIONAL, etc.)
+- studyLevel, credits, totalHours
+- theoreticalHours, practicalHours, labHours
+- semester, academicYear, isActive
+- maxStudents, currentEnrolled
+- prerequisites, objectives, evaluationMethod
+- teacher (FK), school (FK)
+
+#### Enrollment
+- id, enrollmentId, enrollmentType (FULL_TIME, PART_TIME, etc.)
+- status (PENDING, APPROVED, ENROLLED, etc.)
+- enrollmentDate, validationDate, cancellationDate
+- paymentStatus (PENDING, PAID, OVERDUE, etc.)
+- tuitionFee, scholarshipAmount, paidAmount
+- academicYear, specialNotes, isActive
+- student (FK), course (FK), school (FK)
+
+#### Grade
+- id, evaluationTitle, score, maxScore, weight
+- gradeType (EXAM, QUIZ, PROJECT, etc.)
+- semester, academicYear, comments
+- gradedDate, publishedDate
+- isPublished, isValidated
+- student (FK), course (FK), teacher (FK)
+
+#### CourseSchedule
+- id, dayOfWeek, startTime, endTime
+- roomNumber, building
+- scheduleType (LECTURE, TUTORIAL, LAB, etc.)
+- semester, academicYear, isActive, notes
+- course (FK), teacher (FK)
 
 #### User
-- id, email, password, numéro_étudiant
-- nom, prénom, téléphone
-- rôle, spécialité, statut
-- photo, localisation
-
-#### Service
-- id, titre, description
-- catégorie, prix, localisation
-- user_id (prestataire)
-- disponibilité, statut
-- note_moyenne
-
-#### Message
-- id, sender_id, receiver_id
-- contenu, type (texte, fichier, image)
-- timestamp, lu
-- conversation_id
-
-#### Bus
-- id, numéro_ligne, conducteur
-- position_gps, statut
-- horaire_départ, horaire_arrivée
-- places_disponibles
-
-#### Activity
-- id, titre, description
-- date_début, date_fin
-- type, lieu
-- places_max, places_occupées
-- organisateur_id
-
-#### Announcement
-- id, titre, contenu
-- type, priorité
-- auteur_id, date_publication
-- date_expiration, pièces_jointes
+- id, email, password, firstName, lastName
+- phone, role (ADMIN, TEACHER, STUDENT, etc.)
+- department, school (FK)
+- isActive, lastLogin
+- createdAt, updatedAt
 
 ## 🎨 Design et UX
 
 ### Principes
-- Interface intuitive et moderne
-- Responsive design (mobile-first)
-- Accessibilité (WCAG 2.1)
-- Performance optimale
-- Thème ISEP (couleurs institutionnelles)
+- Interface professionnelle et moderne
+- Responsive design (desktop-first pour administration)
+- Accessibilité (WCAG 2.1 AA)
+- Performance optimale (<2s load time)
+- Thème adaptable par établissement
+- Navigation intuitive par rôles
 
 ### Composants UI
-- Navigation principale
-- Cartes de services
-- Chat interface
-- Calendrier interactif
-- Carte géographique
-- Formulaires validés
+- Tableau de bord avec widgets personnalisables
+- Tableaux de données avec filtres avancés
+- Formulaires contextuels
+- Modales et tooltips
+- Graphiques et visualisations
+- Export et impression
 
 ## 📈 Métriques et Analytics
 
 ### KPIs à Suivre
-- Nombre d'utilisateurs actifs
-- Messages échangés
-- Services publiés/réservés
-- Activités créées/participations
-- Utilisation des bus
-- Engagement utilisateurs
+- Nombre d'établissements actifs
+- Nombre d'étudiants par établissement
+- Taux d'utilisation des modules
+- Performance académique
+- Satisfaction utilisateurs
+- Revenus par établissement
+- Taux de rétention
 
-## 🚀 Déploiement
+### Monitoring
+- Temps de réponse API (<200ms)
+- Uptime (>99.5%)
+- Erreurs par application
+- Utilisation des ressources
+- Performance base de données
+
+## 🚀 Déploiement Production
 
 ### Environnements
-- **Development** : Local
-- **Staging** : Serveur de test
-- **Production** : Serveur ISEP
+- **Development** : Local avec Docker Compose
+- **Staging** : Cloud (AWS/Azure) avec données test
+- **Production** : Cloud haute disponibilité
 
-### Infrastructure
-- Serveur web (Nginx/Apache)
-- Base de données PostgreSQL
-- Cache Redis
-- Storage fichiers (S3/Cloudinary)
-- CDN pour assets statiques
+### Infrastructure Production
+- **Application** : 2+ instances behind Load Balancer
+- **Database** : PostgreSQL avec réplication
+- **Cache** : Redis Cluster
+- **Storage** : S3/Cloudinary pour fichiers
+- **CDN** : CloudFlare pour assets statiques
+- **Monitoring** : Prometheus + Grafana
+- **Logs** : ELK Stack
+- **Backup** : Quotidien avec rétention 30 jours
+
+### Configuration Production
+- Variables d'environnement sécurisées
+- SSL/TLS obligatoire
+- Rate limiting par IP
+- Health checks automatisés
+- Scaling horizontal automatique
+- Disaster recovery plan
 
 ## 📝 Livrables
 
-1. ✅ Prototype/Maquettes
-2. ✅ Code source complet
-3. ✅ Documentation technique
-4. ✅ Documentation utilisateur
-5. ✅ Tests et qualité
-6. ✅ Déploiement production
-7. ✅ Formation utilisateurs
+1. ✅ Code source complet ERP
+2. ✅ Documentation technique
+3. ✅ Guide utilisateur
+4. ✅ Guide administrateur
+5. ✅ Scripts déploiement
+6. ✅ Tests automatisés
+7. ✅ Configuration monitoring
+8. ✅ Plan formation
+9. ✅ Support technique
+10. ✅ Mise à jour continue
 
 ---
 
-**Version** : 1.0.0  
-**Date** : 2026-02-16
+**Version** : 4.0.0 - ERP Éducation  
+**Date** : 2026-02-18  
+**Statut** : Prêt pour production
 

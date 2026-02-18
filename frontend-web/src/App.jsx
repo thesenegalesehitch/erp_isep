@@ -5,16 +5,15 @@ import Navbar from './components/layout/Navbar'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
-import ParentRegisterPage from './pages/auth/ParentRegisterPage'
 import DashboardPage from './pages/DashboardPage'
-import ParentDashboardPage from './pages/parent/ParentDashboardPage'
-import StudentGradesPage from './pages/parent/StudentGradesPage'
-import AttendancePage from './pages/parent/AttendancePage'
-import PaymentsPage from './pages/parent/PaymentsPage'
-import StudentLinkPage from './pages/parent/StudentLinkPage'
-import MessagingPage from './pages/messaging/MessagingPage'
-import CalendarPage from './pages/calendar/CalendarPage'
-import ForumPage from './pages/forum/ForumPage'
+import StudentsPage from './pages/erp/StudentsPage'
+import CoursesPage from './pages/erp/CoursesPage'
+import EnrollmentsPage from './pages/erp/EnrollmentsPage'
+import GradesPage from './pages/erp/GradesPage'
+import SchedulePage from './pages/erp/SchedulePage'
+import SchoolsPage from './pages/erp/SchoolsPage'
+import ReportsPage from './pages/erp/ReportsPage'
+import SettingsPage from './pages/erp/SettingsPage'
 
 function App() {
   return (
@@ -25,16 +24,15 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/parent/register" element={<ParentRegisterPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/parent/dashboard" element={<ParentDashboardPage />} />
-          <Route path="/parent/grades" element={<StudentGradesPage />} />
-          <Route path="/parent/attendance" element={<AttendancePage />} />
-          <Route path="/parent/payments" element={<PaymentsPage />} />
-          <Route path="/parent/students" element={<StudentLinkPage />} />
-          <Route path="/messaging" element={<MessagingPage />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/students" element={<StudentsPage />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/enrollments" element={<EnrollmentsPage />} />
+          <Route path="/grades" element={<GradesPage />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="/schools" element={<SchoolsPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </Box>
     </Box>

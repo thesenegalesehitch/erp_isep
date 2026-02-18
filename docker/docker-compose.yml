@@ -4,52 +4,59 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: isep-postgres
+    container_name: isep-erp-postgres
     environment:
-      POSTGRES_DB: isep_platform
-      POSTGRES_USER: isep_user
-      POSTGRES_PASSWORD: isep_password
+      POSTGRES_DB: isep_erp
+      POSTGRES_USER: isep_erp_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-isep_erp_password}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
-      - isep-network
+      - isep-erp-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U isep_user"]
+      test: ["CMD-SHELL", "pg_isready -U isep_erp_user"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   # Redis Cache
   redis:
     image: redis:7-alpine
-    container_name: isep-redis
+    container_name: isep-erp-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - isep-network
+      - isep-erp-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   # Backend API
   backend:
     build:
       context: ../backend
       dockerfile: Dockerfile
-    container_name: isep-backend
+    container_name: isep-erp-backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/isep_platform
-      SPRING_DATASOURCE_USERNAME: isep_user
-      SPRING_DATASOURCE_PASSWORD: isep_password
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/isep_erp
+      SPRING_DATASOURCE_USERNAME: isep_erp_user
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-isep_erp_password}
       REDIS_HOST: redis
       REDIS_PORT: 6379
       JWT_SECRET: ${JWT_SECRET:-change-this-secret-key-in-production}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      UPLOAD_PATH: /app/uploads
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE:-10MB}
     ports:
       - "8080:8080"
     depends_on:
@@ -58,30 +65,80 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - isep-network
+      - isep-erp-network
     volumes:
       - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-  # Frontend Web
+  # Frontend Web (Nginx for production)
   frontend:
     build:
       context: ../frontend-web
       dockerfile: Dockerfile
-    container_name: isep-frontend
+    container_name: isep-erp-frontend
     ports:
-      - "5173:5173"
+      - "80:80"
+      - "443:443"
     environment:
-      VITE_API_URL: http://localhost:8080/api
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:8080/api}
+      VITE_APP_NAME: ${VITE_APP_NAME:-ISEP ERP}
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
-      - isep-network
+      - isep-erp-network
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./uploads:/var/www/uploads
+    restart: unless-stopped
+
+  # Monitoring (Prometheus)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: isep-erp-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - isep-erp-network
+    restart: unless-stopped
+
+  # Monitoring (Grafana)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: isep-erp-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - isep-erp-network
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+    driver: local
   redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
 
 networks:
-  isep-network:
+  isep-erp-network:
     driver: bridge
 
